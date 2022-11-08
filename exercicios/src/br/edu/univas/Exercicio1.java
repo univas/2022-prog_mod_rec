@@ -2,7 +2,7 @@ package br.edu.univas;
 
 import java.util.Scanner;
 
-public class Exercise1 {
+public class Exercicio1 {
 
     public static void main(String[] args) {
         String word = readWord();
