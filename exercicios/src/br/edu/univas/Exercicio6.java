@@ -5,41 +5,41 @@ import java.util.Scanner;
 public class Exercicio6 {
 
     public static void main(String[] args) {
-        int[] weatherAverage = readWeatherAverage();
-        int weatherYearAverage = calcWeatherYearAverage(weatherAverage);
+        int[] mediaTemperaturaMensal = leituraMediaTemperatura();
+        int mediaTemperaturaAnual = calculaMediaTemperaturaAnual(mediaTemperaturaMensal);
 
-        int[] weatherValues = changeWeatherValues(weatherAverage, weatherYearAverage);
-        printMonthWeather(weatherValues, weatherYearAverage);
+        int[] temperaturasMensais = alterarValorTemperaturas(mediaTemperaturaMensal, mediaTemperaturaAnual);
+        imprimeTemperaturaMensal(temperaturasMensais, mediaTemperaturaAnual);
     }
 
-    public static int[] readWeatherAverage() {
-        int[] weatherAverage = new int[12];
+    public static int[] leituraMediaTemperatura() {
+        int[] mediaTemperaturaMensal = new int[12];
 
         Scanner scanner = new Scanner(System.in);
         for (int i = 0; i < 12; i++) {
             System.out.println("Por favor digite a média:");
-            weatherAverage[i] = scanner.nextInt();
+            mediaTemperaturaMensal[i] = scanner.nextInt();
         }
 
-        return weatherAverage;
+        return mediaTemperaturaMensal;
     }
 
-    public static int calcWeatherYearAverage(int[] weatherAverage) {
-        int sum = 0;
-        for (int i = 0; i < weatherAverage.length; i++) {
-            sum += weatherAverage[i];
+    public static int calculaMediaTemperaturaAnual(int[] mediaMensalTemperatura) {
+        int somaTotal = 0;
+        for (int i = 0; i < mediaMensalTemperatura.length; i++) {
+            somaTotal += mediaMensalTemperatura[i];
         }
 
-        return sum / weatherAverage.length;
+        return somaTotal / mediaMensalTemperatura.length;
     }
 
-    public static int[] changeWeatherValues(int[] weatherAverage, int weatherYearAverage) {
-        int[] values = new int[weatherAverage.length];
+    public static int[] alterarValorTemperaturas(int[] mediaTemperaturaMensal, int mediaTemperaturaAnual) {
+        int[] values = new int[mediaTemperaturaMensal.length];
 
-        for (int i = 0; i < weatherAverage.length; i++) {
-            if (weatherAverage[i] < weatherYearAverage) {
+        for (int i = 0; i < mediaTemperaturaMensal.length; i++) {
+            if (mediaTemperaturaMensal[i] < mediaTemperaturaAnual) {
                 values[i] = -1;
-            } else if (weatherAverage[i] == weatherYearAverage) {
+            } else if (mediaTemperaturaMensal[i] == mediaTemperaturaAnual) {
                 values[i] = 0;
             } else {
                 values[i] = 1;
@@ -48,14 +48,14 @@ public class Exercicio6 {
         return values;
     }
 
-    public static void printMonthWeather(int[] weatherValues, int weatherYearAverage) {
-        System.out.println("Média Anual Temperatura: " + weatherYearAverage);
+    public static void imprimeTemperaturaMensal(int[] temperaturasMensais, int mediaTemperaturaAnual) {
+        System.out.println("Média Anual Temperatura: " + mediaTemperaturaAnual);
 
-        for (int i = 0; i < weatherValues.length; i++) {
+        for (int i = 0; i < temperaturasMensais.length; i++) {
             String temp = "abaixo";
-            if (weatherValues[i] == 0) {
+            if (temperaturasMensais[i] == 0) {
                 temp = "igual";
-            } else if (weatherValues[i] == 1) {
+            } else if (temperaturasMensais[i] == 1) {
                 temp = "acima";
             }
 
